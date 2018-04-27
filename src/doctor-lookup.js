@@ -1,21 +1,7 @@
-// A user should be able to enter a medical issue to receive a list of doctors in the Portland area that fit the search query.
-// A user should be able to to enter a name to receive a list of doctors in the Portland area that fit the search query.
-// If the query response includes any doctors, the following information should be included about each doctor: first name, last name, address, phone number, website and whether or not the doctor is accepting new patients (the API provides this data).
-// If the API call results in an error (any message not a 200 OK), the application should return a notification that states what the error is.
-// If the query response doesn't include any doctors (for instance, if no doctors meet the search criteria), the application should return a notification that states that no doctors meet the criteria. (This is not an error so it should be handled separately from any errors.)
+let Promise = require('es6-promise').Promise;
 
-
-// Allow users to search by location (instead of just hardcoding a value for Portland). This will involve making two API calls: one to geocode the latitude and longitude of a location and then a second call to the BetterDoctor API.
-// Add an additional API call to retrieve the list of specialities from the database before you query for a doctor, then return that list in a dropdown menu.
-// Create a list of "recently viewed" doctors and display it.
-// Create a list of "related doctors" and display it. You can define related however you wish.
-// Add static pages, links to your GitHub, social media, and more.
-// Use Google Maps API to plot the locations of doctors's practices on a map.
-
-
-
-class Doctor {
-  constructor(firstName, lastName, address, phoneNumber, website, acceptPatient, title, image, bio, ratings, specialties) {
+export class Doctor {
+  constructor(firstName='', lastName='', address='', phoneNumber='', website='', acceptPatient=true, title='', image='', bio='', ratings='', specialties='') {
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
@@ -29,11 +15,18 @@ class Doctor {
     this.specialties = specialties;
   }
 
-  getDoctorsByMedicalIssue(key, query, location) {
+  getDoctorsByMedicalIssue(key, issue, location, name, specialty) {
     return new Promise(function (resolve, reject) {
       let request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2018-03-01/doctors?user_location=${location}&user_key=${key}&limit=3&query=${query}`;
-
+      
+      let url = `https://api.betterdoctor.com/2018-03-01/doctors?user_location=${location}&user_key=${key}&limit=3&query=${issue}`;
+      if(Boolean(name)){
+        url = `https://api.betterdoctor.com/2018-03-01/doctors?user_location=${location}&user_key=${key}&limit=3&query=${issue}&name=${name}`;
+      }else if(Boolean(specialty)){
+        url = `https://api.betterdoctor.com/2018-03-01/doctors?user_location=${location}&user_key=${key}&limit=3&query=${issue}&specialty_uid=${specialty}`;
+      }else if(Boolean(name) && Boolean(specialty)){
+        url = `https://api.betterdoctor.com/2018-03-01/doctors?user_location=${location}&user_key=${key}&limit=3&query=${issue}&name=${name}&specialty_uid=${specialty_uid}`;
+      }
       request.onload = function () {
         if (this.status === 200) {
           resolve(request.response);
@@ -48,24 +41,6 @@ class Doctor {
 
   }
 
-  getDoctorsByName(key, name, location) {
-    return new Promise(function (resolve, reject) {
-      let request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2018-03-01/doctors?user_location=${location}&user_key=${key}&limit=3&query=${name}`;
-
-      request.onload = function () {
-        if (this.status === 200) {
-          resolve(request.response);
-        } else {
-          reject(Error(request.statusText));
-        }
-      }
-
-      request.open('GET', url, true);
-      request.send();
-    });
-
-  }
 
   doctorMeta(doc) {
     if (doc.length >= 1) {
@@ -78,7 +53,7 @@ class Doctor {
       this.image = doc.profile.image_url;
       this.bio = doc.profile.bio;
       this.ratings = doc.ratings;
-      this.specialties = doc.specialties.name;
+      this.specialties = doc.specialties.uid;
     } else {
       return 'Your doctor went to Marse.';
     }
@@ -87,7 +62,6 @@ class Doctor {
   getGeometry(address, googleApiKey, format) {
     return new Promise(function (resolve, reject) {
       let request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2018-03-01/doctors?user_location=${location}&user_key=${key}&limit=3&query=${query}`;
       let url = `https://maps.googleapis.com/maps/api/geocode/${format}?address=${address}&key=${googleApiKey}`;
       request.onload = function () {
         if (this.status === 200) {
@@ -120,5 +94,6 @@ class Doctor {
       request.send();
     });
   }
+
 
 }

@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html>
+Copy
+<!doctype html>
+<html lang="en">
   <head>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
     <title>doctor lookup</title>
   </head>
   <body>
+    <div class="container my-5">
+      <form id="searh">
+        <input type="text" id="issue" class="form-control form-group" placeholder="medical issue">
+        <input type="text" id="name" class="form-control form-group" placeholder="specify a doctor name">
+        <input type="text" id="location" class="form-control form-group" placeholder="target location">
+        <input type="text" id="location" class="form-control form-group" placeholder="target location">
+        <div class="dropdown form-control form-group">
+          <a class="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            specities
+          </a>
+        
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+        <button type="submit" class="form-control form-group btn btn-info">find doctors</button>
+      </form>
 
+      <div class="output my-5"></div>
+
+
+    </div>    
   </body>
 </html>

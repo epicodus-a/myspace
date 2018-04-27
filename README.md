@@ -17,13 +17,14 @@ $ cd doctor-lookup
 // Install dependencies
 $ npm install
 
-Get your api key at https://developer.betterdoctor.com
+Get your api key at https://developer.betterdoctor.com and developers.google.com
 
 // create file .env at projet root
 $ touch .env
 
 // add your key to .env as below format:
 exports.apiKey=[Your api key]
+exports.googleApiKey=[Your api key]
 
 
 // Run the app
@@ -32,19 +33,17 @@ $ npm start
 
 ## Specifications
 
-- Behaviour: Calcs age, netxt birthday, years to have fun on each planet correctly.
-  - Input: "Adriana, 2/24/2018, 10"
-  - Output: "Adriana, on earth"
-            "0, 3/23/2019, 10"
-            "Adriana, On Venus"
-            "0, 11/5/2018, 7"...
-
-- Behaviour: Calcs age, netxt birthday, years to have fun on each planet correctly.
-  - Input: "Adriana, 1/1/1900, 50"
-  - Output: "Adriana, on earth"
-            "119, 11/31/2018, 69"
-            "Adriana, On Venus"
-            "74, 8/26/2018, 43"...
+- A user should be able to enter a medical issue to receive a list of doctors in the Portland area that fit the search query.
+- A user should be able to to enter a name to receive a list of doctors in the Portland area that fit the search query.
+- If the query response includes any doctors, the following information should be included about each doctor: first name, last name, address, phone number, website and whether or not the doctor is accepting new patients (the API provides this data).
+- If the API call results in an error (any message not a 200 OK), the application should return a notification that states what the error is.
+- If the query response doesn't include any doctors (for instance, if no doctors meet the search criteria), the application should return a notification that states that no doctors meet the criteria. (This is not an error so it should be handled separately from any errors.)
+- Allow users to search by location (instead of just hardcoding a value for Portland). This will involve making two API calls: one to geocode the latitude and longitude of a location and then a second call to the BetterDoctor API.
+- Add an additional API call to retrieve the list of specialities from the database before you query for a doctor, then return that list in a dropdown menu.
+- Create a list of "recently viewed" doctors and display it.
+- Create a list of "related doctors" and display it. You can define related however you wish.
+- Add static pages, links to your GitHub, social media, and more.
+- Use Google Maps API to plot the locations of doctors's practices on a map.
 
 
 ## Known Bugs
