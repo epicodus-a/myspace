@@ -15,8 +15,13 @@
 
 
 class Doctor{
-  constructor(){
-
+  constructor(firstName, lastName, address, phoneNumber, website, acceptPatient){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.address = address;
+    this.phoneNumber = phoneNumber;
+    this.website = website;
+    this.acceptPatient = acceptPatient;
   }
 
   getDoctorsByMedicalIssue(key, query, location){
@@ -57,6 +62,6 @@ class Doctor{
 
   }
 
-
+ 
 
 }
