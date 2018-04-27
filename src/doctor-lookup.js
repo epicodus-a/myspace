@@ -15,13 +15,18 @@
 
 
 class Doctor{
-  constructor(firstName, lastName, address, phoneNumber, website, acceptPatient){
+  constructor(firstName, lastName, address, phoneNumber, website, acceptPatient, title, image, bio,ratings, specialties){
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
     this.phoneNumber = phoneNumber;
     this.website = website;
     this.acceptPatient = acceptPatient;
+    this.title = title;
+    this.image = image;
+    this.bio = bio;
+    this.ratings = ratings;
+    this.specialties = specialties;
   }
 
   getDoctorsByMedicalIssue(key, query, location){
@@ -62,6 +67,21 @@ class Doctor{
 
   }
 
- 
+  doctorMeta(doc){
+    if(doc.length >= 1){
+     this.acceptPatient = doc.practices.accepts_new_patients;
+     this.address = `${doc.practices.visit_address.street}, ${doc.practices.visit_address.city}, ${doc.practices.visit_address.state}, ${doc.practices.visit_address.zip}`;
+     this.phoneNumber = `${doc.practices.phones.type}: ${doc.practices.phones.phoneNumber}`;
+     this.firstName = doc.profile.first_name;
+     this.lastName = doc.profile.last_name;
+     this.title = doc.profile.title;
+     this.image = doc.profile.image_url;
+     this.bio = doc.profile.bio;
+     this.ratings = doc.ratings;
+     this.specialties = doc.specialties.name;
+    }else{
+      return 'Your doctor went to Marse.';
+    }
+  }
 
 }
