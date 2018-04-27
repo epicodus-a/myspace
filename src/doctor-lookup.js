@@ -11,3 +11,34 @@
 // Create a list of "related doctors" and display it. You can define related however you wish.
 // Add static pages, links to your GitHub, social media, and more.
 // Use Google Maps API to plot the locations of doctors's practices on a map.
+
+
+
+class Doctor{
+  constructor(){
+
+  }
+
+  getDoctorsByMedicalIssue(key, query, location){
+    return new Promise(function(resolve, reject){
+      let request = new XMLHttpRequest();
+      let url = `https://api.betterdoctor.com/2018-03-01/doctors?user_location=${location}&user_key=${key}&limit=3&query=${query}`;
+
+      request.onload = function(){
+        if(this.status === 200){
+          resolve(request.response);
+        }else{
+          reject(Error(request.statusText));
+        }
+      }
+
+      request.open('GET', url, true);
+      request.send();
+    });
+    
+  }
+
+
+
+
+}
