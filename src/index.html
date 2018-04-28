@@ -1,4 +1,3 @@
-Copy
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,26 +10,31 @@ Copy
   </head>
   <body>
     <div class="container my-5">
-      <form id="searh">
-        <input type="text" id="issue" class="form-control form-group" placeholder="medical issue">
+      <form id="search">
+        <input type="text" id="issue" class="form-control form-group" placeholder="medical issue" required>
         <input type="text" id="name" class="form-control form-group" placeholder="specify a doctor name">
-        <input type="text" id="location" class="form-control form-group" placeholder="target location">
-        <input type="text" id="location" class="form-control form-group" placeholder="target location">
-        <div class="dropdown form-control form-group">
-          <a class="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            specities
-          </a>
-        
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+        <input type="text" id="location" class="form-control form-group" placeholder="enter location: portland, oregon">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="button">specialties</button>
           </div>
+          <select class="custom-select" id="specialties">
+            <option>Choose...</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+           
+          </select>
         </div>
-        <button type="submit" class="form-control form-group btn btn-info">find doctors</button>
+        <button type="submit" class="form-control form-group btn btn-info">Find Doctors</button>
       </form>
 
-      <div class="output my-5"></div>
+      <div class="output my-5">
+        <div class="row">
+          <div class="col-12">
+            <p></p>
+          </div>
+      </div>
+      </div>
 
 
     </div>    
