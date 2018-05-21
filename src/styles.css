@@ -1,3 +1,7 @@
+body{
+  box-sizing: border-box;
+  font-family: verdana,arial,sans-serif,helvetica;
+}
 
 .left{
   width: 40%;
@@ -42,7 +46,6 @@ nav ul{
 nav ul li{
   align-content: center;
   font-size: 8pt;
-  font-family: verdana,arial,sans-serif,helvetica;
 }
 .profile-flex{
   display: flex;
@@ -87,5 +90,73 @@ h2{
   margin-bottom: 0;
   background-color: rgb(102, 153, 204);
   color: white;
+}
 
+.myspace-url{
+  padding-left: .3rem;
+  font-size: 9pt;
+  margin-top: 1.3rem;
+  border: 1px solid rgb(102, 153, 204);
+}
+.myspace-url a{
+  font-size: 8pt;
+}
+.header-tom{
+  margin-top: 1.5rem;
+}
+.interests{
+  border: 1.5px solid rgb(102, 153, 204);
+  padding:.3rem;
+}
+.general{
+  display: flex;
+  border-top: 3px solid white;
+}
+.title{
+  background-color: rgb(177, 208, 240);
+  padding: .15rem;
+  width: 35%;
+  margin-right: .2rem;
+  color: #336699;
+}
+h6{
+  font-size: 8pt;
+  font-weight: bold;
+}
+.content{
+  background-color: rgb(213, 232, 251);
+  font-size: 9pt;
+  width: 65%;
+  padding: .2rem .15rem;
+  word-spacing: .15rem;
+  font-weight: 300;
+  line-height: .9rem;
+}
+.interests-header{
+  color: #fff;
+  background-color: rgb(102, 153, 204);
+}
+.header-tom h2{
+  margin: 0;
+  /* padding-left: .8rem; */
+  font-size: 9pt;
+  padding: .2rem .8rem;
+}
+.no-border{
+  border-top: none;
+}
+.t-school{
+  width: 80%;
+  font-size: 8pt;
+  font-weight: 300;
+  color: black;
+}
+.t-school a{
+  font-weight: bold;
+  color: #039;
+}
+
+
+.c-school{
+  width: 20%;
 }
